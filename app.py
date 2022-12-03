@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_cors import CORS
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -13,7 +13,6 @@ CHATS_DIRECTORY = app.config.get("CHATS_DIRECTORY", "./chats/")
 
 @app.route("/save", methods=["POST"])
 def index():
-    breakpoint()
     body = json.loads(request.data)["body"]
     filename = int(datetime.now().timestamp())
     with open(f"{CHATS_DIRECTORY}{filename}", "w") as fp:
@@ -30,9 +29,8 @@ def parse(filename):
         parts = []
         for p in paragraphs:
             # Get the text content of the current <p> element
-            text = p.text
+            text = f"{p.text}<br />"
             parts.append(text)
-            breakpoint()
         return "<br />".join(parts)
 
 
@@ -56,4 +54,5 @@ def parse_latest():
             # its path as the
             # most recently modified file
             most_recent_file = file_path
-    return parse(most_recent_file)
+    parsed = parse(most_recent_file)
+    return render_template("parsed.html", parsed=parsed)

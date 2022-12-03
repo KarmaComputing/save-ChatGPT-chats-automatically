@@ -1,4 +1,4 @@
-# Save ChatGPT
+# Save ChatGPT chats automatically
 
 Quickly save your ChatGPT chat to text.
 

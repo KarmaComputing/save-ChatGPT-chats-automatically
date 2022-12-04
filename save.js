@@ -7,4 +7,6 @@ function savechat() {
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify({ body: body }));
 
+  alert("Chat thread has been saved, probably");
+
 }

@@ -11,10 +11,15 @@ Fun experimental research
 
 # Usage
 
+
 go to https://chat.openai.com/chat
 
 Open Chrome dev tools
 
+> **New** Created a chrome extension, see [chrome-extension](./chrome-extension)
+> But you still need to run the flask app. Though the old method is easy too:
+
+<strike>
 Page in the 'console' tab:
 
 ```
@@ -30,6 +35,9 @@ function savechat() {
 }
 ```
 
+</strike>
+
+## Run flask app to save the chat threads
 Open a terminal, and run this flask app in on your local computer:
 
 ```

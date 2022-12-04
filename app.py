@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -17,7 +17,7 @@ def index():
     filename = int(datetime.now().timestamp())
     with open(f"{CHATS_DIRECTORY}{filename}", "w") as fp:
         fp.write(body)
-    return f"wrote file: {filename}"
+    return jsonify({"msg": f"wrote file: {filename}"})
 
 
 def parse(filename):

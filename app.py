@@ -28,6 +28,12 @@ def parse(filename):
         return text
 
 
+@app.route("/chat/<timestamp>")
+def show_chat(timestamp):
+    path = Path(CHATS_DIRECTORY, timestamp).absolute()
+    return parse(path)
+
+
 @app.route("/parse")
 def parse_latest():
     # Get a list of all the files in the directory

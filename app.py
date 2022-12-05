@@ -1,9 +1,9 @@
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
 from datetime import datetime
-from bs4 import BeautifulSoup
 import os
 import json
+from pathlib import Path
 
 
 app = Flask(__name__)
@@ -22,16 +22,10 @@ def index():
 
 def parse(filename):
     # Parse the HTML using BeautifulSoup
-    filename = filename
-    with open(f"./{filename}", "r") as fp:
-        soup = BeautifulSoup(fp.read(), "html.parser")
-        paragraphs = soup.find_all("p")
-        parts = []
-        for p in paragraphs:
-            # Get the text content of the current <p> element
-            text = f"{p.text}<br />"
-            parts.append(text)
-        return "<br />".join(parts)
+    path = Path("./", filename).absolute()
+    with open(path, "r") as fp:
+        text = fp.read()
+        return text
 
 
 @app.route("/parse")
